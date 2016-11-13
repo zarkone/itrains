@@ -1,14 +1,17 @@
 (set-env!
  :source-paths    #{"src/cljs"}
  :resource-paths  #{"resources"}
- :dependencies '[[adzerk/boot-cljs          "1.7.228-1"  :scope "test"]
-                 [adzerk/boot-cljs-repl     "0.3.0"      :scope "test"]
-                 [adzerk/boot-reload        "0.4.8"      :scope "test"]
-                 [pandeiro/boot-http        "0.7.2"      :scope "test"]
-                 [com.cemerick/piggieback   "0.2.1"      :scope "test"]
-                 [org.clojure/tools.nrepl   "0.2.12"     :scope "test"]
-                 [weasel                    "0.7.0"      :scope "test"]
-                 [org.clojure/clojurescript "1.7.228"]])
+ :dependencies '[[reagent "0.6.0"]
+                 [adzerk/boot-cljs          "1.7.228-2"]
+                 [adzerk/boot-cljs-repl     "0.3.3"]
+                 [adzerk/boot-reload        "0.4.13"]
+                 [pandeiro/boot-http        "0.7.6"]
+                 [com.cemerick/piggieback   "0.2.1"]
+                 [org.clojure/tools.nrepl   "0.2.12"]
+                 [weasel                    "0.7.0"]
+                 [cljs-http                 "0.1.42"]
+                 [org.clojure/core.async    "0.2.395"]
+                 [org.clojure/clojurescript "1.9.293"]])
 
 (require
  '[adzerk.boot-cljs      :refer [cljs]]
@@ -17,10 +20,7 @@
  '[pandeiro.boot-http    :refer [serve]])
 
 (deftask build []
-  (comp (speak)
-        
-        (cljs)
-        ))
+  (comp (cljs)))
 
 (deftask run []
   (comp (serve)
@@ -43,5 +43,3 @@
   []
   (comp (development)
         (run)))
-
-
